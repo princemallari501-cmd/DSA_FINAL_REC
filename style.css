@@ -1,0 +1,76 @@
+/* GENERAL STYLE */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f6f7fb;
+}
+
+header {
+    background: #003eaa;
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+/* NAVIGATION */
+nav {
+    background: #0051d4;
+    display: flex;
+    justify-content: center;
+}
+
+nav a {
+    padding: 14px 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: #003f9e;
+}
+
+/* CONTENT */
+.container {
+    width: 80%;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+h1, h2 {
+    color: #003eaa;
+}
+
+pre {
+    background: #eeeeee;
+    padding: 15px;
+    border-left: 5px solid #003eaa;
+    overflow-x: auto;
+}
+
+/* FOOTER */
+footer {
+    background: #003eaa;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 40px;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* IMAGE */
+.img-banner {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    animation: fadeIn 1.5s;
+}

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Structures</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header><h1>Data Structure Implementations</h1></header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="algorithms.html">Algorithms</a>
+    <a href="pseudocode.html">Pseudocode</a>
+    <a href="datastructures.html">Data Structures</a>
+</nav>
+
+<div class="container">
+
+<h2>ARRAY</h2>
+
+<h3>C++</h3>
+<pre>
+int A[5] = {1,2,3,4,5};
+for(int i=0;i<5;i++)
+    cout << A[i];
+</pre>
+
+<h3>Python</h3>
+<pre>
+A = [1, 2, 3, 4, 5]
+for x in A:
+    print(x)
+</pre>
+
+<hr>
+
+<h2>STACK (Infix → Postfix)</h2>
+
+<h3>C++</h3>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;cctype&gt;
+using namespace std;
+
+int prec(char c){
+    if(c=='^') return 3;
+    if(c=='*' || c=='/') return 2;
+    if(c=='+' || c=='-') return 1;
+    return -1;
+}
+
+string infixToPostfix(string s){
+    stack<char> st;
+    string result;
+
+    for(char c: s){
+        if(isalnum(c)) result += c;
+        else if(c=='(') st.push(c);
+        else if(c==')'){
+            while(st.top()!='('){
+                result += st.top(); st.pop();
+            }
+            st.pop();
+        }
+        else{
+            while(!st.empty() && prec(c) <= prec(st.top())){
+                result += st.top(); st.pop();
+            }
+            st.push(c);
+        }
+    }
+
+    while(!st.empty()){ result += st.top(); st.pop(); }
+    return result;
+}
+</pre>
+
+<h3>Python</h3>
+<pre>
+def prec(c):
+    if c == '^': return 3
+    if c in "*/": return 2
+    if c in "+-": return 1
+    return -1
+
+def infix_to_postfix(s):
+    stack = []
+    result = ""
+    for c in s:
+        if c.isalnum():
+            result += c
+        elif c == "(":
+            stack.append(c)
+        elif c == ")":
+            while stack[-1] != "(":
+                result += stack.pop()
+            stack.pop()
+        else:
+            while stack and prec(c) <= prec(stack[-1]):
+                result += stack.pop()
+            stack.append(c)
+    while stack:
+        result += stack.pop()
+    return result
+</pre>
+
+<hr>
+
+<h2>QUEUE</h2>
+
+<h3>C++</h3>
+<pre>
+#include &lt;iostream&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+int main(){
+    queue<int> q;
+    q.push(10);
+    q.push(20);
+    q.push(30);
+
+    while(!q.empty()){
+        cout << q.front() << " ";
+        q.pop();
+    }
+}
+</pre>
+
+<h3>Python</h3>
+<pre>
+from collections import deque
+
+q = deque()
+q.append(10)
+q.append(20)
+q.append(30)
+
+while q:
+    print(q.popleft())
+</pre>
+
+<hr>
+
+<h2>TREES</h2>
+
+<h3>C++</h3>
+<pre>
+struct Node{
+    int data;
+    Node *left, *right;
+    Node(int v){ data=v; left=right=NULL; }
+};
+
+void inorder(Node* r){
+    if(r){
+        inorder(r->left);
+        cout << r->data << " ";
+        inorder(r->right);
+    }
+}
+
+void preorder(Node* r){
+    if(r){
+        cout << r->data << " ";
+        preorder(r->left);
+        preorder(r->right);
+    }
+}
+
+void postorder(Node* r){
+    if(r){
+        postorder(r->left);
+        postorder(r->right);
+        cout << r->data << " ";
+    }
+}
+</pre>
+
+<h3>Python</h3>
+<pre>
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def inorder(root):
+    if root:
+        inorder(root.left)
+        print(root.data, end=" ")
+        inorder(root.right)
+
+def preorder(root):
+    if root:
+        print(root.data, end=" ")
+        preorder(root.left)
+        preorder(root.right)
+
+def postorder(root):
+    if root:
+        postorder(root.left)
+        postorder(root.right)
+        print(root.data, end=" ")
+</pre>
+
+</div>
+
+<footer>
+    © 2025 Group Project
+</footer>
+
+</body>
+</html>
